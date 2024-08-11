@@ -14,13 +14,13 @@ public class NotificationController {
     private NotificationService notificationService;
 
     //toDel
-    @RequestMapping()
+    @RequestMapping("/hello")
     private String hello() {
         return "Hello from NotificationController";
     }
 
     //toDel
-    @RequestMapping("/service")
+    @RequestMapping("/hello/service")
     private String helloService() {
         return notificationService.hello();
     }
