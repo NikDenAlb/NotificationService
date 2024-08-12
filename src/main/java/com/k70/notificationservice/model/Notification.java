@@ -3,6 +3,7 @@ package com.k70.notificationservice.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -20,6 +21,7 @@ import java.util.UUID;
  * <pre/>
  **/
 @Entity
+@Data //toDel (need in DTO) not sure
 public class Notification {
 
     @Id

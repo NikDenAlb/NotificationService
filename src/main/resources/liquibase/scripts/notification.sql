@@ -4,8 +4,8 @@
 
 CREATE TABLE notification
 (
-    id          UUID,
-    customer_id UUID,
+    id          TEXT PRIMARY KEY,
+    customer_id TEXT,
     message     TEXT,
     sent_at     TEXT
 );

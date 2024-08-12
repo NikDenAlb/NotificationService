@@ -6,6 +6,8 @@ import com.k70.notificationservice.service.NotificationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +38,10 @@ public class NotificationController {
     @GetMapping
     public ResponseEntity<List<Notification>> getAllNotifications() {
         return new ResponseEntity<>(notificationService.getAllNotifications(), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Notification> saveNotification(@RequestBody Notification notification) {
+        return new ResponseEntity<>(notificationService.save(notification), HttpStatus.OK);
     }
 }
