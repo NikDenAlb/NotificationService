@@ -2,12 +2,9 @@ package com.k70.notificationservice.controller;
 
 
 import com.k70.notificationservice.dto.NotificationDTO;
-import com.k70.notificationservice.mapper.NotificationMapper;
-import com.k70.notificationservice.model.Notification;
 import com.k70.notificationservice.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +22,6 @@ import java.util.List;
 public class NotificationController {
 
     public final NotificationService notificationService;
-    @Autowired
-    public final NotificationMapper notificationMapper;
 
     //toDel
     @GetMapping("/hello")
@@ -42,11 +37,11 @@ public class NotificationController {
 
     @GetMapping
     public ResponseEntity<List<NotificationDTO>> getAllNotifications() {
-        return new ResponseEntity<>(notificationService.getAllNotifications().stream().map(notificationMapper::toNotificationDTO).toList(), HttpStatus.OK);
+        return new ResponseEntity<>(notificationService.getAllNotifications(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Notification> save(@RequestBody Notification notification) {
-        return new ResponseEntity<>(notificationService.save(notification), HttpStatus.OK);
+    public ResponseEntity<NotificationDTO> save(@RequestBody NotificationDTO notificationDTO) {
+        return new ResponseEntity<>(notificationService.save(notificationDTO), HttpStatus.OK);
     }
 }
