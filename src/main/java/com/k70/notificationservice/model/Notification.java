@@ -3,9 +3,13 @@ package com.k70.notificationservice.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 //toDel
@@ -21,7 +25,10 @@ import java.util.UUID;
  * <pre/>
  **/
 @Entity
-@Data //toDel (need in DTO) not sure
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Notification {
 
     @Id
@@ -30,4 +37,16 @@ public class Notification {
     private UUID customerId;
     private String message;
     private LocalDateTime sentAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Notification that)) return false;
+        return Objects.equals(customerId, that.customerId) && Objects.equals(message, that.message) && Objects.equals(sentAt, that.sentAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerId, message, sentAt);
+    }
 }
