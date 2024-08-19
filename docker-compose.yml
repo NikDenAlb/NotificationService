@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-notification
+    ports:
+      - "8084:8084"
+    restart: no
+    depends_on:
+      - db-notification
+    networks:
+      - internet
+      - notificationnet
+
+  db-notification:
+    image: postgres:16-alpine
+    container_name: db-notification
+    environment:
+      POSTGRES_DB: K70NDB
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGPORT: 5437
+    ports:
+      - "5437:5437"
+    volumes:
+      - notification_db:/var/lib/postgresql/data
+    restart: no
+    networks:
+      - notificationnet
+
+volumes:
+  notification_db:
+
+networks:
+  internet:
+    name: internet
+    driver: bridge
+  notificationnet:
+    name: notificationnet
+    driver: bridge
