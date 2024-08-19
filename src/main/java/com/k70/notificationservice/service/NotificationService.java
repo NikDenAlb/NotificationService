@@ -17,14 +17,18 @@ public class NotificationService {
         this.notificationMapper = notificationMapper;
     }
 
-    //toDel
+    /**
+     * Controlling method free to delete
+     */
     public String hello() {
         return "hello from NotificationService";
     }
 
+
     public List<NotificationDTO> getAllNotifications() {
         return notificationRepository.findAll().stream().map(notificationMapper::toNotificationDTO).toList();
     }
+
 
     public NotificationDTO save(NotificationDTO notificationDTO) {
         return notificationMapper.toNotificationDTO(notificationRepository.save(notificationMapper.toNotification(notificationDTO)));

@@ -7,5 +7,6 @@ public record NotificationDTO(
         UUID id,
         UUID customerId,
         String message,
-        LocalDateTime sentAt)
-{}
+        LocalDateTime sentAt
+) {
+}

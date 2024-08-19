@@ -22,23 +22,13 @@ public class RestTemplateService extends RestTemplateAbstractService {
         super(restTemplate);
     }
 
-
     @Override
     public List<BookingResponseDTO> getBookingResponseDTO(LocalDateTime startDate, LocalDateTime endDate) {
         String url = bookingURL + "?" + "startDate=" + startDate/*.format(DateTimeFormatter.ISO_DATE_TIME)*/
                 + "&endDate=" + endDate/*.format(DateTimeFormatter.ISO_DATE_TIME)*/;
         try {
-
-//            ResponseEntity<List<Rate>> rateResponse =
-//                    restTemplate.exchange("https://bitpay.com/api/rates",
-//                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Rate>>() {
-//                            });
-//            List<Rate> rates = rateResponse.getBody();
-
-
             ResponseEntity<List<BookingResponseDTO>> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<BookingResponseDTO>>() {
             });
-
             return responseEntity.getBody();
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {

@@ -10,4 +10,5 @@ public record BookingResponseDTO(
         CustomerDTO customer,
         LocalDateTime startDate,
         LocalDateTime endDate
-) {}
+) {
+}

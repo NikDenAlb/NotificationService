@@ -10,8 +10,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public abstract class RestTemplateAbstractService implements RestTemplateService {
 
-    @Value("http://localhost:8081/bookings")
-    //@Value("resttemplate.url.booking")
+    //TODO @Value("http://localhost:8081/bookings") in local profile
+    @Value("${resttemplate.url.booking}")
     protected String bookingURL;
 
     protected final RestTemplate restTemplate;
